@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+     <h:head>
+ 
+     </h:head>
+ 
+<h:body>
+<h:form id="form2">
+	<p:selectOneMenu value="#{ticketView.filtroActualId}" >
+		<p:ajax listener="#{ticketView.filtrar()}" event="itemSelect" update="form1"/>
+		<f:selectItems value="#{ticketView.paramFiltros}" var="filtro" itemLabel="#{filtro.texto}" itemValue="#{filtro.id}" />
+	</p:selectOneMenu>
+</h:form>
+
+<h:form id="form1">
+<p:linkButton outcome="create" value="New Ticket" icon="fa fa-plus" >
+    
+</p:linkButton>
+
+		<p:dataTable id="table1" var="ticket" value="#{ticketView.ticketsFiltrados}" widgetVar="ticketsTable"
+                 emptyMessage="No se encontraron tickets">
+ 
+ 		<p:column headerText="" width="3%">
+            <i class="fa fa-fw fa-phone"></i>
+        </p:column>
+ 
+        <p:column headerText="Ticket">
+            <b>#<h:outputText value="#{ticket.id}" /></b><br/>
+            <h:outputText value="#{ticket.titulo}" />
+        </p:column>
+        
+        <p:column headerText=""  width="3%">
+            <i class="fa fa-fw fa-comments"></i>
+        </p:column>
+         
+        <p:column headerText="status" width="5%">
+            <h:outputText value="#{ticketView.getTexto(ticket.statusId)}" />
+        </p:column>
+ 
+        <p:column headerText="priority" width="5%">
+            <h:outputText value="#{ticketView.getTexto(ticket.priorityId)}" />
+        </p:column>
+ 
+        <p:column headerText="owner" width="10%">
+            <h:outputText value="#{ticketView.getTexto(ticket.owner)}" />
+        </p:column>
+ 
+        <p:column headerText="Due date" width="10%">
+            <h:outputText value="#{ticket.fechaVence}">
+
+            </h:outputText>
+        </p:column>
+        
+        <p:column headerText="deals" width="10%">
+            <h:outputText value="#{ticketView.getTexto(ticket.dealId)}" />
+        </p:column>
+        
+        <p:column headerText=""  width="5%">
+            <p:commandButton action="#{ticketView.editarAction()}" icon="fa fa-fw fa-edit" style="margin-right:20px;" title="Edit">
+    			<f:setPropertyActionListener value="#{ticket}" target="#{ticketView.ticketEdicion}" />
+			</p:commandButton>
+			
+			<p:commandButton action="#{ticketView.borrarAction()}" icon="fa fa-fw fa-remove" style="margin-right:20px;" title="Delete" update="table1" >
+    			<p:confirm header="Confirmation" message="Are you sure?" icon="fa fa-fw fa-exclamation-triangle" />
+    			<f:setPropertyActionListener value="#{ticket}" target="#{ticketView.ticketEdicion}" />
+			</p:commandButton>
+        </p:column>
+        
+    </p:dataTable>
+    
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-fw fa-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-fw fa-times" />
+    </p:confirmDialog> 
+</h:form>
+ 
+     </h:body>
+</html>

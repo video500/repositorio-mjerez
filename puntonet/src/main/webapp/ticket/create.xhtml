@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet name="primeflex.min.css"/>
+</h:head>
+
+<h:body>
+
+	<h:form>
+		<h3>Nuevo Ticket</h3>
+		<div class="ui-fluid ">
+		
+		
+			<div class="p-field ">
+				<p:outputLabel for="titulo-input"  value="Titulo" />
+				<p:inputText id="titulo-input" value="#{ticketView.ticketEdicion.titulo}" />
+			</div>
+			
+			<div class="p-field ">
+				<p:outputLabel for="desc-area"  value="Descripcion" />
+				<p:inputTextarea id="desc-area" value="#{ticketView.ticketEdicion.descripcion}" />
+			</div>
+			
+			</div>
+			<div class="ui-fluid p-formgrid p-grid">
+			
+			<div class="p-field p-col-12 p-md-3">
+	            <p:outputLabel for="state" value="Estado" />
+	            <p:selectOneMenu id="state" value="#{ticketView.ticketEdicion.statusId}">
+	                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
+	                <f:selectItems value="#{ticketView.paramStatus}" var="s" itemLabel="#{s.texto}" itemValue="#{s.id}" />
+	            </p:selectOneMenu>
+        	</div>
+        	
+        	<div class="p-field p-col-12 p-md-3">
+	            <p:outputLabel for="owner" value="Prioridad" />
+	            <p:selectOneMenu id="priority" value="#{ticketView.ticketEdicion.priorityId}">
+	                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
+	                <f:selectItems value="#{ticketView.paramPriority}" var="p" itemLabel="#{p.texto}" itemValue="#{p.id}" />
+	            </p:selectOneMenu>
+        	</div>
+        	
+        	<div class="p-field p-col-12 p-md-3">
+	            <p:outputLabel for="owner" value="Encargado" />
+	            <p:selectOneMenu id="owner" value="#{ticketView.ticketEdicion.owner}">
+	                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
+	                <f:selectItems value="#{ticketView.paramOwner}" var="o" itemLabel="#{o.texto}" itemValue="#{o.id}" />
+	            </p:selectOneMenu>
+        	</div>
+        	
+        	<div class="p-field p-col-12 p-md-3">
+	            <p:outputLabel for="deal" value="Deal" />
+	            <p:selectOneMenu id="deal" value="#{ticketView.ticketEdicion.dealId}">
+	                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
+	               	<f:selectItems value="#{ticketView.paramDeal}" var="d" itemLabel="#{d.texto}" itemValue="#{d.id}" />
+	            </p:selectOneMenu>
+        	</div>		
+
+			<div class="p-field p-col-12 p-md-3">
+				<p:outputLabel for="dueDate" value="Vencimiento" />
+				<p:datePicker id="dueDate" value="#{ticketView.fechaVenceTemporal}" />
+			</div>
+			
+			</div>
+			<div class="ui-fluid p-formgrid p-grid">
+				<div class="p-field p-col-6 p-md-2">
+					<p:commandButton value="Guardar" action="#{ticketView.guardarAction()}" ajax="false" icon="fa fa-fw fa-save" />
+				</div>
+			</div>
+	</h:form>
+
+</h:body>
+</html>
