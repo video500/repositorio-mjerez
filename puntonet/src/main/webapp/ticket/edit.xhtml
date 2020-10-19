@@ -15,12 +15,12 @@
 		
 			<div class="p-field ">
 				<p:outputLabel for="titulo-input"  value="Titulo" />
-				<p:inputText id="titulo-input" value="#{ticketView.ticketEdicion.titulo}" />
+				<p:inputText id="titulo-input" value="#{ticketView.ticketEdicion.titulo}" required="true"/>
 			</div>
 			
 			<div class="p-field ">
 				<p:outputLabel for="desc-area"  value="Descripcion" />
-				<p:inputTextarea id="desc-area" value="#{ticketView.ticketEdicion.descripcion}" />
+				<p:inputTextarea id="desc-area" value="#{ticketView.ticketEdicion.descripcion}" required="true"/>
 			</div>
 			
 			</div>
@@ -28,7 +28,7 @@
 			
 			<div class="p-field p-col-12 p-md-3">
 	            <p:outputLabel for="state" value="Estado" />
-	            <p:selectOneMenu id="state" value="#{ticketView.ticketEdicion.statusId}">
+	            <p:selectOneMenu id="state" value="#{ticketView.ticketEdicion.statusId}" required="true">
 	                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
 	                <f:selectItems value="#{ticketView.paramStatus}" var="s" itemLabel="#{s.texto}" itemValue="#{s.id}" />
 	            </p:selectOneMenu>
@@ -36,7 +36,7 @@
         	
         	<div class="p-field p-col-12 p-md-3">
 	            <p:outputLabel for="owner" value="Prioridad" />
-	            <p:selectOneMenu id="priority" value="#{ticketView.ticketEdicion.priorityId}">
+	            <p:selectOneMenu id="priority" value="#{ticketView.ticketEdicion.priorityId}" required="true">
 	                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
 	                <f:selectItems value="#{ticketView.paramPriority}" var="p" itemLabel="#{p.texto}" itemValue="#{p.id}" />
 	            </p:selectOneMenu>
@@ -44,7 +44,7 @@
         	
         	<div class="p-field p-col-12 p-md-3">
 	            <p:outputLabel for="owner" value="Encargado" />
-	            <p:selectOneMenu id="owner" value="#{ticketView.ticketEdicion.owner}">
+	            <p:selectOneMenu id="owner" value="#{ticketView.ticketEdicion.owner}" required="true">
 	                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
 	                <f:selectItems value="#{ticketView.paramOwner}" var="o" itemLabel="#{o.texto}" itemValue="#{o.id}" />
 	            </p:selectOneMenu>
@@ -52,7 +52,7 @@
         	
         	<div class="p-field p-col-12 p-md-3">
 	            <p:outputLabel for="deal" value="Deal" />
-	            <p:selectOneMenu id="deal" value="#{ticketView.ticketEdicion.dealId}">
+	            <p:selectOneMenu id="deal" value="#{ticketView.ticketEdicion.dealId}" required="true">
 	                <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true"/>
 	               	<f:selectItems value="#{ticketView.paramDeal}" var="d" itemLabel="#{d.texto}" itemValue="#{d.id}" />
 	            </p:selectOneMenu>
@@ -60,7 +60,7 @@
 
 			<div class="p-field p-col-12 p-md-3">
 				<p:outputLabel for="dueDate" value="Vencimiento" />
-				<p:datePicker id="dueDate" value="#{ticketView.fechaVenceTemporal}" />
+				<p:datePicker id="dueDate" value="#{ticketView.fechaVenceTemporal}"/>
 			</div>
 			
 			</div>
